@@ -18,6 +18,6 @@ while (!$phpmyadmin_port) {
 [Environment]::SetEnvironmentVariable('WORDPRESS_PORT', $wordpress_port)
 [Environment]::SetEnvironmentVariable('PHPMYADMIN_PORT', $phpmyadmin_port)
 
-docker-compose \
-    --project-name $docker_project_name \
+docker-compose `
+    --project-name $docker_project_name `
     up
