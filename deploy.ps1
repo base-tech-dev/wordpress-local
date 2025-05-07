@@ -18,6 +18,13 @@ while (!$phpmyadmin_port) {
 [Environment]::SetEnvironmentVariable('WORDPRESS_PORT', $wordpress_port)
 [Environment]::SetEnvironmentVariable('PHPMYADMIN_PORT', $phpmyadmin_port)
 
+# set environment variables
+cat .env | ForEach-Object {
+    if ($_ -match '^([0-9A-Z_]+)=(.*)$') {
+        [Environment]::SetEnvironmentVariable($Matches[1], $Matches[2]);
+    }
+}
+
 docker-compose `
     --project-name $docker_project_name `
     up
